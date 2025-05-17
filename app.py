@@ -37,20 +37,20 @@ assessments_collection = db['assessments']
 
 # Create upload folder if it doesn't exist
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-
+port = int(os.environ.get('PORT', 10000))
 # Function to download model if not present
 def download_model():
     model_path = app.config['MODEL_PATH']
     if not os.path.exists(model_path):
         print("Downloading model file...")
-        # Replace with your cloud storage direct download URL (Google Drive, Dropbox, etc.)
-        model_url = 'https://drive.google.com/file/d/18MKflSfZq4VblO6HhxlqpPFIDJhMUSSh/view?usp=sharing'
         try:
+            model_url = 'https://drive.google.com/uc?export=download&id=18MKflSfZq4VblO6HhxlqpPFIDJhMUSSh'
             urllib.request.urlretrieve(model_url, model_path)
             print("Model downloaded successfully")
         except Exception as e:
             print(f"Error downloading model: {str(e)}")
             print("Using dummy model for testing")
+            return None
     return model_path
 
 # Download and load the model at startup
@@ -386,5 +386,7 @@ def get_assessment(assessment_id):
         return jsonify({"error": f"Error retrieving assessment: {str(e)}"}), 500
 
 if __name__ == '__main__':
+    # Run the Flask server on all network interfaces 
+    # so it's accessible from the mobile app
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=False, host='0.0.0.0', port=port)
