@@ -386,7 +386,5 @@ def get_assessment(assessment_id):
         return jsonify({"error": f"Error retrieving assessment: {str(e)}"}), 500
 
 if __name__ == '__main__':
-    # Run the Flask server on all network interfaces 
-    # so it's accessible from the mobile app
     port = int(os.environ.get('PORT', 5000))
-    app.run(debug=False, host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port)
