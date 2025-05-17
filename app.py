@@ -16,7 +16,7 @@ from pymongo import MongoClient
 import uuid
 
 # Import the DamageAssessmentModel from your inference.py file
-from inference import DamageAssessmentModel, load_model
+#from inference import DamageAssessmentModel, load_model
 
 app = Flask(__name__)
 # Enable CORS for all routes and origins (important for mobile app connection)
