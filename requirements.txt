@@ -1,10 +1,11 @@
 flask==2.2.3
 flask-cors==3.0.10
 numpy==1.24.2
-torch==2.0.0
-torchvision==0.15.1
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==2.0.0+cpu
+torchvision==0.15.1+cpu
 pillow==9.4.0
 pymongo==4.3.3
-opencv-python==4.7.0.72
+opencv-python-headless==4.7.0.72
 gunicorn==20.1.0
 python-dotenv==1.0.0
